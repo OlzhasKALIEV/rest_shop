@@ -1,5 +1,3 @@
-from pydoc import html
-
 from flask import Flask, request
 
 from products import id_product, products, name_product, id_producta
@@ -17,7 +15,12 @@ def get_post_product():
     if request.method == 'GET':
         return id_product()
     else:
-        return name_product()
+        '''{"id":"4", "name_product" : "Наушники", 
+        "product_price":"20000"}
+        '''
+        request_data = request.get_json()
+        products.append(request_data)
+        return "Хорошо"
 
 
 @app.get('/product/<id>')
