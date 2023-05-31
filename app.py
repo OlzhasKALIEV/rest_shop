@@ -20,7 +20,7 @@ def get_post_product():
         '''
         request_data = request.get_json()
         products.append(request_data)
-        return "Хорошо"
+        return "Товар добавлен в магазин"
 
 
 @app.get('/product/<id>')
