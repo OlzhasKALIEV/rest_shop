@@ -36,8 +36,3 @@ def id_producta(id):
             return p
 
     return None
-
-
-f = {"id":"1", "name_product" : "Машинка", "product_price":'10 000'}
-products.append(f)
-print(products)
