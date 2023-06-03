@@ -1,3 +1,5 @@
+from flask import make_response
+
 products = [
     dict(
         id=1,
@@ -38,18 +40,17 @@ def insert_products(insert_product):
     for value in products:
         if insert_product["id"] == value["id"]:
             count += 1
-            return f'Ошибка {400}: продукт с id {insert_product["id"]} уже существует'
+            return make_response(f'Продукт с {insert_product["id"]} уже существует', 409)
     if count == 0:
         products.append(insert_product)
-    return f'{200}: Продукт успешно добавлен'
+    return make_response("Продукт успешно добавлен", 200)
 
 
 def delete_products(id):
-    id = int(id)
-    for i in products:
-        if id == i["id"]:
-            products.remove(i)
-            return f'Ответ {200}: продукт {i} был успешно удален'
-        else:
-            return f'Ответ {409}: данного продукта не существует'
-
+    if id.isdigit() == True:
+        for i in products:
+            if id == str(i["id"]):
+                products.remove(i)
+                return make_response("Продукт удален", 200)
+    else:
+        return make_response("Необходимо ввести целое число", 400)

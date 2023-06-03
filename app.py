@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 from products import id_product, insert_products, delete_products
 
@@ -10,22 +10,18 @@ def root():
     return "Интернет-магазин"
 
 
-@app.route('/product', methods=['GET', "POST"])
-def get_post_product():
-    if request.method == 'GET':
-        return id_product()
-    if request.method == "POST":
-        return f"Ошибка {405}: Method Not Allowed"
+@app.route('/product', methods=['GET'])
+def get_product():
+    return id_product()
 
 
-@app.route('/insert/product', methods=["GET", "POST"])
+@app.route('/insert/product', methods=["POST"])
 def get_insert_product():
-    if request.method == 'GET':
-        get_product = request.get_json()
-        return get_product  # возвращает то что мы хотим добавить в магазин
-    if request.method == "POST":
-        insert_product = request.get_json()
+    insert_product = request.get_json()
+    if len(insert_product) == 3:
         return insert_products(insert_product)
+    else:
+        return make_response("Необходимо заполнить все данные", 413)
 
 
 @app.delete('/delete/product/<id>')
