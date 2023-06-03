@@ -1,19 +1,14 @@
 products = [
     dict(
-        id="1",
+        id=1,
         name_product="Телефон",
-        product_price='10 000'
+        product_price='10000'
     ),
     dict(
-        id="2",
-        name_product="Мышка",
-        product_price='500'
-    ),
-    dict(
-        id="3",
-        name_product="Телевизор",
-        product_price='40 000'
-    ),
+        id=2,
+        name_product="Ноутбук",
+        product_price='50000'
+    )
 ]
 
 
@@ -36,3 +31,14 @@ def id_producta(id):
             return p
 
     return None
+
+
+def inser_products(insert_product):
+    count = 0
+    for value in products:
+        if insert_product["id"] == value["id"]:
+            count += 1
+            return f'Ошибка {400}: продукт с id {insert_product["id"]} уже существует'
+    if count == 0:
+        products.append(insert_product)
+    return f'{200}: Продукт успешно добавлен'
