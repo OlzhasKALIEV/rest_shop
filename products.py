@@ -33,7 +33,7 @@ def id_producta(id):
     return None
 
 
-def inser_products(insert_product):
+def insert_products(insert_product):
     count = 0
     for value in products:
         if insert_product["id"] == value["id"]:

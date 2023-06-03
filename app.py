@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from products import id_product, products, name_product, id_producta, inser_products
+from products import id_product, products, name_product, id_producta, insert_products
 
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def get_insert_product():
         return get_product  # возвращает то что мы хотим добавить в магазин
     if request.method == "POST":
         insert_product = request.get_json()
-        return inser_products(insert_product)
+        return insert_products(insert_product)
 
 
 @app.get('/product/<id>')
