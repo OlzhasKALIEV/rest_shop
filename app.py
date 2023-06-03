@@ -15,7 +15,7 @@ def get_post_product():
     if request.method == 'GET':
         return id_product()
     if request.method == "POST":
-        return "405 Method Not Allowed"
+        return f"Ошибка {405}: Method Not Allowed"
 
 
 @app.route('/insert/product', methods=["GET", "POST"])
