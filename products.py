@@ -42,3 +42,14 @@ def insert_products(insert_product):
     if count == 0:
         products.append(insert_product)
     return f'{200}: Продукт успешно добавлен'
+
+
+def delete_products(id):
+    id = int(id)
+    for i in products:
+        if id == i["id"]:
+            products.remove(i)
+            return f'Ответ {200}: продукт {i} был успешно удален'
+        else:
+            return f'Ответ {409}: данного продукта не существует'
+

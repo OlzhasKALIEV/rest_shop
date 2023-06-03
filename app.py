@@ -1,6 +1,6 @@
 from flask import Flask, request
 
-from products import id_product, products, name_product, id_producta, insert_products
+from products import id_product, insert_products, delete_products
 
 app = Flask(__name__)
 
@@ -28,13 +28,9 @@ def get_insert_product():
         return insert_products(insert_product)
 
 
-@app.get('/product/<id>')
-def get_id(id):
-    product = id_producta(id)
-    if not product:
-        return "Такого продукта нет"
-
-    return f"Вы добавили в корзину продукт {product['name_product']}"
+@app.delete('/delete/product/<id>')
+def delete_product(id):
+    return delete_products(id)
 
 
 if __name__ == "__main__":
