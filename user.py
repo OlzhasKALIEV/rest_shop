@@ -1,1 +1,1 @@
-user_shopping_cart = list()
+user_shopping_cart = list(dict())
