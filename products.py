@@ -26,13 +26,3 @@ def get_product(id):
                 }
             )
     return make_response("Данного продукта нет", 400)
-
-
-def delete_products(id):
-    if id.isdigit() == True:
-        for i in products:
-            if id == str(i["id"]):
-                products.remove(i)
-                return make_response("Продукт удален", 200)
-    else:
-        return make_response("Необходимо ввести целое число", 400)
