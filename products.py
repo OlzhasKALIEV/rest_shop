@@ -19,8 +19,12 @@ products = [
 def get_product(id):
     for inproduct_information in products:
         if inproduct_information.get("id") == int(id):
-            return jsonify({"name_product": inproduct_information["name_product"],
-                            "product_price": inproduct_information["product_price"]})
+            return jsonify(
+                {
+                    "name_product": inproduct_information["name_product"],
+                    "product_price": inproduct_information["product_price"]
+                }
+            )
     return make_response("Данного продукта нет", 400)
 
 
