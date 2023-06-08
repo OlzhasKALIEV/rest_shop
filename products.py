@@ -1,4 +1,6 @@
-from flask import make_response
+import json
+
+from flask import make_response, jsonify
 
 products = [
     dict(
@@ -14,36 +16,12 @@ products = [
 ]
 
 
-def id_product():
-    return products
-
-
-def name_product():
-    prod = list()
-    for i in range(len(products)):
-        for j, y in products[i].items():
-            if j == 'name_product':
-                prod.append(y)
-    return prod
-
-
-def id_producta(id):
-    for p in products:
-        if p.get("id") == id:
-            return p
-
-    return None
-
-
-def insert_products(insert_product):
-    count = 0
-    for value in products:
-        if insert_product["id"] == value["id"]:
-            count += 1
-            return make_response(f'Продукт с {insert_product["id"]} уже существует', 409)
-    if count == 0:
-        products.append(insert_product)
-    return make_response("Продукт успешно добавлен", 200)
+def get_product(id):
+    for inproduct_information in products:
+        if inproduct_information.get("id") == int(id):
+            return jsonify({"name_product": inproduct_information["name_product"],
+                            "product_price": inproduct_information["product_price"]})
+    return make_response("Данного продукта нет", 400)
 
 
 def delete_products(id):
