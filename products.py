@@ -33,4 +33,4 @@ def insert_product(jsonproduct):
         count = product["id"] + 1
         new_product = {"id": count} | jsonproduct
         products.append(new_product)
-    return make_response(f'Продукт успешно добавлен', 200)
+    return make_response("Продукт успешно добавлен", 200)
