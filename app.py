@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 
 @app.get("/product")
-def get_product():
+def get_products():
     return jsonify({"store_products": products})
 
 
