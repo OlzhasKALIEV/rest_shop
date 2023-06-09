@@ -6,12 +6,12 @@ products = [
     dict(
         id=1,
         name_product="Телефон",
-        product_price='10000'
+        product_price=10000
     ),
     dict(
         id=2,
         name_product="Ноутбук",
-        product_price='50000'
+        product_price=50000
     )
 ]
 
@@ -26,3 +26,11 @@ def get_product(id):
                 }
             )
     return make_response("Данного продукта нет", 400)
+
+
+def insert_product(jsonproduct):
+    for product in products[-1:]:
+        count = product["id"] + 1
+        new_product = {"id": count} | jsonproduct
+        products.append(new_product)
+    return make_response(f'Продукт успешно добавлен', 200)
