@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, jsonify
 from jsonschema.validators import validate
 from jsonschema.exceptions import ValidationError
 
-from products import get_product, products, insert_product
+from products import get_product, products, insert_product, delete
 
 app = Flask(__name__)
 
@@ -41,6 +41,11 @@ def post_insert_product():
         }, 400
 
     return insert_product(jsonproduct)
+
+
+@app.delete("/delete/<id>")
+def delete_product(id):
+    return delete(id)
 
 
 if __name__ == "__main__":

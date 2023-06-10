@@ -34,3 +34,14 @@ def insert_product(jsonproduct):
         new_product = {"id": count} | jsonproduct
         products.append(new_product)
     return make_response("Продукт успешно добавлен", 200)
+
+
+def delete(id):
+    for delete_id in products:
+        if delete_id["id"] == int(id):
+            products.remove(delete_id)
+            return make_response(f'Продукт {delete_id} удален', 200)
+        else:
+            return make_response(f'Продукта не существует', 400)
+
+
